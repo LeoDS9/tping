@@ -9,7 +9,7 @@ Y luego ejecutamos app.py.
 
 
 ## :handshake: Contact
-- Manzano Reynoso, Esteban Noé - [Esteban]([https://github.com/LauraCuenca](https://github.com/estebannoemr))
+- Manzano Reynoso, Esteban Noé - [Esteban]((https://github.com/estebannoemr))
 - Tucci, Juan Crúz - [Tucci](https://github.com/Tuccim4n)
 - Dos Santos, Leonardo 
 - Sánchez Nicolai, Carlos Adrián - [Adrían](https://github.com/AdrianSanchez9)
