@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}Mi Perfil{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Mi Perfil</h1>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <br />
+                {% for message in messages %}
+                <div class="alert alert-primary alert-dismissible" role="alert">
+                    <strong>{{ message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <p class="card-text">Email: {{ current_user.email }}</p>
+            <p class="card-text">Nombre: {{ current_user.first_name }}</p>
+            <p class="card-text">Apellido: {{ current_user.last_name }}</p>
+            <p class="card-text">Edad: {{ current_user.age }}</p>
+            <div class="d-flex justify-content-between">
+                <a href="{{ url_for('editar_perfil') }}" class="btn btn-primary">Editar Perfil</a>
+                
+                <form action="{{ url_for('logout') }}">
+                    <button type="submit" class="btn btn-danger btn-logout">Cerrar Sesión</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

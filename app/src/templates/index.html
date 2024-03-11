@@ -1,0 +1,36 @@
+{% extends './layout.html' %}
+
+{% block title %}{{ NOMBREAPP }} - Inicio{% endblock %}
+
+{% block content %}
+
+<div class="container text-center my-3">
+  <h1>NOMBREAPP</h1>
+  <small>Trueques de embarcaciones</small>
+</div>
+
+<div class="container">
+  <h3>Trueques</h3>
+  <div class="container my-3">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+      {% for prod in products %}
+      <div class="col mb-4">
+        <div class="card">
+          <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+          <div class="card-body">
+            <h5 class="card-title">{{ prod[1] }}</h5>
+            <p class="card-text">{{ prod[2] }}</p>
+            <p class="text">Cambia por: {{ prod[3] }}</p>
+            <!-- Aquí puedes mostrar los vehículos de trueque si es necesario -->
+            <div class="d-flex justify-content-center">
+              <a href="#" class="card-link">Solicitar trueque</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

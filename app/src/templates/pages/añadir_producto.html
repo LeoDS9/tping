@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% block title %}NOMBREAPP - Añadir Producto{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Añadir Nuevo Producto</h1>
+    <form id="añadirProductoForm" method="POST" action="{{ url_for('añadirproducto') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">  
+      <div class="mb-3">
+            <label for="name" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Descripción:</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="trueque" class="form-label">Vehículos para trueque:</label>
+            <input type="text" class="form-control" id="trueque" name="trueque" required>
+            <small class="form-text text-muted">Separados por comas (ej: vehiculo1, vehiculo2, vehiculo3)</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Añadir Producto</button>
+    </form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exitoModal" tabindex="-1" aria-labelledby="exitoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exitoModalLabel">Producto Creado</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        El producto se ha creado correctamente.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Agrega este bloque debajo del formulario -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+
+<script>
+    // Validación del formulario antes de enviarlo
+    document.getElementById('añadirProductoForm').addEventListener('submit', function(event) {
+        // Validar vehículos para trueque (permitir letras, espacios y comas)
+        var vehiculosTrueque = document.getElementById('vehiculos_trueque').value;
+        if (!/^[a-zA-Z,\s]*$/.test(vehiculosTrueque)) {
+            alert('Por favor, solo ingresa letras, espacios y comas en los vehículos para trueque.');
+            event.preventDefault();
+            return;
+        }
+        // Mostrar modal de éxito
+        //$('#exitoModal').modal('show');
+    });
+</script>
+{% endblock %}
